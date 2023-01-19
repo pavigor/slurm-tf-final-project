@@ -1,0 +1,24 @@
+# Compiled files
+terraform/*.tfstate
+terraform/*.tfstate.backup
+terraform/*.tfstate.lock.info
+
+terraform/*.lock.hcl
+
+# logs
+terraform/*.log
+
+# Directories
+terraform/.terraform/
+
+# SSH Keys
+terraform/*.pem
+
+# Backup files
+terraform/*.bak
+
+# Ignored Terraform files
+terraform/*gitignore*.tf
+
+# Ignored vscode files
+.vscode/
