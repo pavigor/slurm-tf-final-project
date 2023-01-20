@@ -7,7 +7,7 @@ git clone git@github.com:pavigor/slurm-tf-final-project.git
 ```
 
 ## Packer
-Create image with Nginx deployed with Ansible provisioner.
+**Task:** Create image with Nginx deployed with Ansible provisioner.
 
 ### 1. Set variables
 Fill `variables.pkrvars.hcl` with your Yandex Cloud credentials
@@ -19,13 +19,27 @@ packer build -var-file=variables.pkrvars.hcl .
 ```
 
 ## Terraform
-Deploy infrastructure with three subnets (one per AZ), instance group and application load balancer.
+**Task:** Deploy infrastructure with three subnets (one per AZ), instance group and application load balancer.
 
-### 1. Set variables
-Fill `variables.tf` with your Yandex Cloud credentials
+### Install Yandex Cloud CLI (YC)
+```
+curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+```
+Follow [instructions](https://cloud.yandex.com/en/docs/cli/quickstart#install) to configure YC 
+
+### 1. Set auth data for Yandex provider
+```
+export YC_TOKEN=$(yc iam create-token)
+export YC_CLOUD_ID=$(yc config get cloud-id)
+export YC_FOLDER_ID=$(yc config get folder-id)
+```
+
+### 2. Set variables
+Fill `variables.tf` with your requirements
 
 ### 2. Deploy infra
 ```
 cd terraform
+terraform init
 terraform apply -var-file=var.tfvars
 ```

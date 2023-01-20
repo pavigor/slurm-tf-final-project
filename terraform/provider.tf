@@ -10,7 +10,5 @@ terraform {
 
 # https://cloud.yandex.com/en/docs/tutorials/infrastructure-management/terraform-quickstart
 provider "yandex" {
-  token     = ""
-  cloud_id  = ""
-  folder_id = ""
+
 }
