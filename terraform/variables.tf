@@ -64,3 +64,14 @@ variable "instance_group_metadata" {
   type        = map
   description = "Metadata for instance group"
 }
+
+variable "allocate_external_ip" {
+  type        = bool
+  description = "Allocate external IPv4 address on instance"
+}
+
+variable "public_ssh_key_path" {
+  type        = string
+  default     = ""
+  description = "Path to ssh public key"
+}

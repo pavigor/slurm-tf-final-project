@@ -18,6 +18,7 @@ resource "yandex_compute_instance_group" "this" {
 
   instance_template {
     platform_id = "standard-v1"
+    name        = "${var.environment}-{instance.zone_id}-{instance_group.id}-{instance.short_id}"
     resources {
         memory = var.vm_resources.memory
         cores  = var.vm_resources.cores
@@ -32,11 +33,14 @@ resource "yandex_compute_instance_group" "this" {
     network_interface {
       network_id = "${yandex_vpc_network.this.id}"
       subnet_ids = data.yandex_vpc_subnet.this.v4_cidr_blocks
+      nat        = var.allocate_external_ip
     }
     
     labels   = var.instance_group_labels
     
-    metadata = var.instance_group_metadata
+    metadata = {
+      ssh-keys = var.public_ssh_key_path != "" ? "centos:${file(var.public_ssh_key_path)}" : "centos:${tls_private_key.ssh_key[0].public_key_openssh}"
+    }
     
     network_settings {
       type = "STANDARD"

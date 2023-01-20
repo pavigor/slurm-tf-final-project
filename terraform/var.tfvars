@@ -27,3 +27,5 @@ instance_group_labels = {
 }
 
 instance_group_metadata = {}
+
+allocate_external_ip = true

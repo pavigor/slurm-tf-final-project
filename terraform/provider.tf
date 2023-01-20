@@ -12,3 +12,7 @@ terraform {
 provider "yandex" {
 
 }
+
+provider "tls" {
+  
+}
